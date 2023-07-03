@@ -1,13 +1,9 @@
 package union.xenfork.interpreter;
 
-import union.xenfork.interpreter.records.CodeBase;
-
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Stream;
 
 public class Main {
@@ -38,16 +34,8 @@ public class Main {
 
 
 
-    public static void main(String[] args) {
-        try {
-            interpreter(new File(System.getProperty("user.dir")).toPath().resolve("test"));
-        } catch (IOException ignored) {}
-        for (Path path : paths) {
-            CodeBase codeBase = new CodeBase();
-            try {
-                codeBase.gen(path);
-            } catch (IOException ignored) {}
-            System.out.println(codeBase);
-        }
+    public static void main(String[] args) throws IOException {
+
+        
     }
 }
