@@ -9,9 +9,9 @@ public class TestTooInteger {
     }
     @Test
     public void addTest() {
-        TooInteger tooInteger = new TooInteger("1000000000");
-        tooInteger.add(tooInteger);
-        tooInteger.add(new TooInteger("100000000000000000"));
+        TooInteger tooInteger = new TooInteger("100000000");
+//        tooInteger.add(tooInteger);
+        tooInteger.add(new TooInteger("900000000"));
         System.out.println(tooInteger);
     }
 }

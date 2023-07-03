@@ -53,23 +53,28 @@ public class TooInteger implements Serializable {
     public TooInteger add(TooInteger integer) {
         TooInteger copy = integer.copy();
         Set<Integer> integers = copy.integerMap.keySet();
-        Set<Integer> integers1 = this.integerMap.keySet();
         int mod = 0;
         int integer_ = 0;
         for (int i = 0; i < integers.size(); i++) {
             int primitive;
-            if (i <= this.integerMap.size() - 1) {
-                primitive = this.integerMap.get(i);//原数
-            } else {
-                primitive = 0;
-            }
+            integer_ = i;
+            primitive = this.integerMap.getOrDefault(i, 0);//原数
             Integer addend = copy.integerMap.get(i);//加数
             int i1 = primitive + addend + mod;
-            mod = i1 % 1000;
-            this.integerMap.put(i, i1 / 1000);
+            mod = i1 / 1000;
+            System.out.println(mod);
+            this.integerMap.put(i, i1 % 1000);
         }
-        if (mod != 0) {
-            this.integerMap.put(this.integerMap.size(), mod);
+        while (mod != 0) {
+            integer_++;
+            if (this.integerMap.containsKey(integer_)) {
+                int i1 = mod + this.integerMap.get(integer_);
+                mod = i1 / 1000;
+                this.integerMap.put(integer_, i1 % 1000);
+            } else {
+                this.integerMap.put(integer_, mod);
+                mod = 0;
+            }
         }
         return this;
     }
