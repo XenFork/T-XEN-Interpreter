@@ -1,5 +1,7 @@
 package union.xenfork.interpreter;
 
+import union.xenfork.interpreter.core.ExpressionLoad;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,5 +38,11 @@ public class Main {
 
 
     public static void main(String[] args) {
+        for (Path path : paths) {
+            try {
+                ExpressionLoad expressionLoad = new ExpressionLoad(path);
+                expressionLoad.firstRead();
+            } catch (IOException ignored) {}
+        }
     }
 }

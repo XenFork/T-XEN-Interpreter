@@ -1,4 +1,4 @@
-package union.xenfork.interpreter.interpreter.lang;
+package union.xenfork.interpreter.interpreter.chars;
 
 import union.xenfork.interpreter.interpreter.abstracts.AbstractCharSequenceExpression;
 

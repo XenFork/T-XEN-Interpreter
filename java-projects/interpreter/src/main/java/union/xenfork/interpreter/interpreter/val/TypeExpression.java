@@ -2,7 +2,6 @@ package union.xenfork.interpreter.interpreter.val;
 
 import union.xenfork.interpreter.interpreter.IExpression;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public class TypeExpression implements IExpression {
