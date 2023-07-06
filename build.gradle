@@ -9,6 +9,7 @@ allprojects {
     dependencies {
         implementation 'com.github.pfmiles:dropincc.java:0.2.3'
         implementation 'org.parboiled:parboiled-java:1.4.1'
+        implementation 'org.antlr:antlr4:4.13.0'
         testImplementation platform('org.junit:junit-bom:5.9.1')
         testImplementation 'org.junit.jupiter:junit-jupiter'
     }

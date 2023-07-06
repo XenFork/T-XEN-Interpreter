@@ -16,6 +16,7 @@ public class ExpressionLoad {
     public static final HashMap<String, Class<?>> global_type = new HashMap<>();
 
     static {
+
         global_type.put("int", int.class);
         global_type.put("string", String.class);
         global_type.put("charBuffer", CharBuffer.class);
