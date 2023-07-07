@@ -31,7 +31,7 @@ public class TXenClassWrite extends ClassWriter {
         FieldVisitor fieldVisitor = super.visitField(ACC_PUBLIC + ACC_STATIC, name, Type.INT_TYPE.getDescriptor(), null, null);
         fieldVisitor.visitEnd();
     }
-    public void visitIntVal(String name, Integer integer) {
+    public void visitIntVal(String name, int integer) {
         FieldVisitor fieldVisitor = super.visitField(ACC_PUBLIC + ACC_STATIC + ACC_FINAL, name, Type.INT_TYPE.getDescriptor(), null, integer);
         fieldVisitor.visitEnd();
     }

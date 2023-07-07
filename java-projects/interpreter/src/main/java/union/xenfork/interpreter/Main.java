@@ -6,6 +6,7 @@ import union.xenfork.interpreter.asm.TXenClassWrite;
 import union.xenfork.interpreter.core.ExpressionLoad;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -47,10 +48,14 @@ public class Main {
                 "union.test"
         );
         visit.visitIntVal("age", 1);
+        visit.visitIntVar("cc");
         visit.createClass();
         for (Class<?> aClass : TXenClassLoader.classes) {
             Object o = aClass.getDeclaredConstructor().newInstance();
             Object o1 = aClass.getField("age").get(null);
+            Field cc = aClass.getField("cc");
+            cc.set(null, 1);
+            System.out.println(cc.get(null));
             System.out.println(o1);
         }
         for (Path path : paths) {
