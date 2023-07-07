@@ -1,6 +1,8 @@
 package union.xenfork.interpreter;
 
+import org.objectweb.asm.ClassWriter;
 import union.xenfork.interpreter.asm.TXenClassLoader;
+import union.xenfork.interpreter.asm.TXenClassWrite;
 import union.xenfork.interpreter.core.ExpressionLoad;
 
 import java.io.IOException;
@@ -8,7 +10,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 public class Main {
@@ -40,11 +41,17 @@ public class Main {
 
 
 
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        List<Class<?>> classes = TXenClassLoader.createClasses();
-        for (Class<?> aClass : classes) {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
+        TXenClassWrite visit = new TXenClassWrite(
+                ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS,
+                "union.test"
+        );
+        visit.visitIntVal("age", 1);
+        visit.createClass();
+        for (Class<?> aClass : TXenClassLoader.classes) {
             Object o = aClass.getDeclaredConstructor().newInstance();
-            System.out.println(o);
+            Object o1 = aClass.getField("age").get(null);
+            System.out.println(o1);
         }
         for (Path path : paths) {
             try {
