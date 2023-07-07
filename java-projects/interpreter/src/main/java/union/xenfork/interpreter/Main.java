@@ -1,11 +1,14 @@
 package union.xenfork.interpreter;
 
+import union.xenfork.interpreter.asm.TXenClassLoader;
 import union.xenfork.interpreter.core.ExpressionLoad;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class Main {
@@ -37,7 +40,12 @@ public class Main {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        List<Class<?>> classes = TXenClassLoader.createClasses();
+        for (Class<?> aClass : classes) {
+            Object o = aClass.getDeclaredConstructor().newInstance();
+            System.out.println(o);
+        }
         for (Path path : paths) {
             try {
                 ExpressionLoad expressionLoad = new ExpressionLoad(path);
